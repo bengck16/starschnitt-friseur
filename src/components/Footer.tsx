@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Footer() {
@@ -46,7 +48,7 @@ export default function Footer() {
           <p className="text-brand-taupe/50 font-sans text-xs font-light">
             © {year} Friseursalon Starschnitt. Alle Rechte vorbehalten.
           </p>
-          <ul className="flex gap-6">
+          <ul className="flex flex-wrap gap-6">
             {[
               { label: "Impressum", href: "/impressum" },
               { label: "Datenschutz", href: "/datenschutz" },
@@ -60,6 +62,14 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("openCookieSettings"))}
+                className="text-brand-taupe/50 text-xs font-sans font-light hover:text-brand-taupe transition-colors"
+              >
+                Cookie-Einstellungen
+              </button>
+            </li>
           </ul>
         </div>
       </div>
