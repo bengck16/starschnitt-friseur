@@ -1,18 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 
 const team = [
-  { name: "Cindy Emmrich", role: "Inhaberin · Friseurmeisterin" },
-  { name: "Susan Patzelt", role: "Friseurmeisterin · Kosmetikerin" },
-  { name: "Andrea Springer", role: "Friseurmeisterin" },
-  { name: "Nadine Eckardt", role: "Friseurin · Fußpflegerin" },
-  { name: "Anja Helfer", role: "Friseurin · Kosmetikerin · Nageldesignerin" },
-  { name: "Steven Bengisch", role: "Friseur (Damen & Herren) · Barber" },
-  { name: "Lisa Hiekel", role: "Friseurin · Fußpflegerin · Kosmetikerin" },
-  { name: "Ronja Donner", role: "Auszubildende" },
-  { name: "Jasmin Thurm", role: "Auszubildende" },
+  { name: "Cindy Emmrich", role: "Inhaberin · Friseurmeisterin", image: "/team/cindy-emmrich.jpg" },
+  { name: "Susan Patzelt", role: "Friseurmeisterin · Kosmetikerin", image: "/team/susan-patzelt.jpg" },
+  { name: "Andrea Springer", role: "Friseurmeisterin", image: "/team/andrea-springer.jpg" },
+  { name: "Nadine Eckardt", role: "Friseurin · Fußpflegerin", image: "/team/nadine-eckardt.jpg" },
+  { name: "Anja Helfer", role: "Friseurin · Kosmetikerin · Nageldesignerin", image: "/team/anja-helfer.jpg" },
+  { name: "Steven Bengisch", role: "Friseur (Damen & Herren) · Barber", image: "/team/steven-bengisch.jpg" },
+  { name: "Lisa Hiekel", role: "Friseurin · Fußpflegerin · Kosmetikerin", image: null },
+  { name: "Ronja Donner", role: "Auszubildende", image: "/team/ronja-donner.jpg" },
+  { name: "Jasmin Thurm", role: "Auszubildende", image: "/team/jasmin-thurm.jpg" },
 ];
 
 function Initials({ name }: { name: string }) {
@@ -70,9 +71,19 @@ export default function TeamSection() {
               variants={itemVariants}
               className="bg-brand-surface p-6 md:p-8 group hover:bg-brand-bg transition-colors duration-300 flex flex-col"
             >
-              {/* Avatar circle */}
-              <div className="w-14 h-14 rounded-full border border-brand-bronze/30 flex items-center justify-center mb-5 group-hover:border-brand-bronze transition-colors duration-300">
-                <Initials name={member.name} />
+              {/* Avatar */}
+              <div className="w-20 h-20 rounded-full overflow-hidden border border-brand-bronze/30 flex items-center justify-center mb-5 group-hover:border-brand-bronze transition-colors duration-300 flex-shrink-0">
+                {member.image ? (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    width={80}
+                    height={80}
+                    className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
+                  />
+                ) : (
+                  <Initials name={member.name} />
+                )}
               </div>
               <p className="font-display text-base md:text-lg text-brand-text font-light leading-snug mb-1">
                 {member.name}
